@@ -1,8 +1,13 @@
 #include<iostream>
+#include<string>
+#include<algorithm>
+#include<stack>
 using namespace std;
+
 const int Size = 5;
 class Stack {
 int element [Size];
+public:
 	int top;
 	bool Empty() {
 		if (top == -1)
@@ -17,8 +22,8 @@ int element [Size];
 		else
 			return false;
 	}
-public:
 	Stack() :top(-1) {};
+
 	void push(int value) {
 		if (Full()) {
 			cout << "Stack overflow" << endl;
@@ -56,6 +61,93 @@ public:
 			cout << " ]";
 		}
 	}
+	int top_element() {
+		return  element[top];
+	}
+};
+class Balanced_parentheses {
+public:
+	bool pair(char open ,char close) {
+		if (open == '(' && close == ')') return true;
+		if (open == '{' && close == '}') return true;
+		if (open == '[' && close == ']') return true;
+		return false;
+	}
+	bool is_balance(string exp) {
+		Stack left_brackets;
+		for (int i = 0; i < exp.length(); i++) {
+			if (exp[i] == '[' || exp[i] == '{' || exp[i] == '(') {
+				left_brackets.push(exp[i]);
+			}
+			else if (exp[i] == ']' || exp[i] == '}' || exp[i] == ')') {
+				if (left_brackets.Empty()) return false;
+				else if (!pair(left_brackets.top_element(), exp[i])) return false;
+				else
+					left_brackets.pop();
+			}
+
+		}
+		
+		if (!left_brackets.Empty()) return false;
+		else return true;
+	}
+	void print( string x) {
+		if (!is_balance (x)) {
+			cout << " Not balanced \n";
+		}
+		else
+			cout << " Balanced \n";
+	}
+};
+class To_Postfix {
+ private:
+	int priority(char c) {
+		if (c == '+' || c == '-') return 1;
+		if (c == '/' || c == '*') return 2;
+		else return 0;
+	}
+ public:
+	 void infixExpression(string exp) {
+		 Stack stk;
+		 string ouput;
+		 for (int i = 0; i < exp.length(); i++) {
+			 if (exp[i] == ' ') continue;
+			 if (isdigit(exp[i]) || isalpha(exp[i])) {
+				 
+				 ouput += exp[i];
+
+			 } 
+			 else if (exp[i] == '(') stk.push('(');
+			 else if (exp[i] == ')') {
+				 while (stk.top_element() != '(') {
+					 ouput += stk.top_element();
+					 stk.pop();
+
+				 }
+				 stk.pop();
+			 }
+			 else {
+				 while ( !stk.Empty() && priority(exp[i]) <= priority(stk.top_element())) {
+					 ouput += stk.top_element();
+					 stk.pop();
+				 }
+				 stk.push(exp[i]);
+			 }
+
+		 }
+		 while (!stk.Empty()) {
+			 ouput += stk.top_element();
+			 stk.pop();
+		 }
+
+			 
+		cout << ouput << endl;
+	 }
+
+	
+
+
+
 };
 class Qeue {
 	int element[Size];
@@ -363,11 +455,15 @@ public:
 
 };
 int main() { 
+	
+ 
 	// --------------------Stack-----------------------------//
 	cout << "\n---------------------------\n" << " Stack class : \n";
+
 	Stack c;
 	c.display(); c.push(10); c.push(20); c.push(30); c.display();
 	c.pop(); c.display();
+
 	//..------------------Qeue-------------------------------..//
 	cout << "\n\n---------------------------\n"<< " Qeue class : \n";
 
@@ -398,6 +494,18 @@ int main() {
 	DLs.Display_forwardBackward(1);
 	DLs.Display_forwardBackward(3);
 	DLs.Display_forwardBackward(5);
+	//---------------------blanced parentheses------------//
+	cout << "\n\n------------------------------------\n"<< "Balaned or not : \n";
+	
+	Balanced_parentheses balance;
+	balance.print("[]");
+	balance.print(")(()()())(((");
+ 
+	//---------------------ToPostfix----------------------//
+	cout << "\n\n------------------------------------------\n" << "To Postfix : \n";
+	To_Postfix tps;
+	tps.infixExpression("8+2*5-(5+3)");
+	tps.infixExpression("a+(c*d)/x-c");
 	return 0;
 }
 
