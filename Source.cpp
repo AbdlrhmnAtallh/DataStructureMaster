@@ -506,6 +506,119 @@ int main() {
 	To_Postfix tps;
 	tps.infixExpression("8+2*5-(5+3)");
 	tps.infixExpression("a+(c*d)/x-c");
+	//---------------------------------------------------//
+	bool Exit = false;
+	while (!Exit) {
+		bool Back = false;
+		cout << " \n \n Choose one of the following options by its number .";
+		cout << " \n 1. Stack \n 2. Qeue \n 3. Circular qeue \n 4. Linkedlist \n 5. Double Linked list " <<
+			"\n 6. Balanced parentheses \n 7. Topostfix \n 0. Exit program \n";
+		int option;
+		cin >> option;
+		if (option == 0) Exit = true;
+		enum process {
+			stack, Qeue, CircularQqeue, Linkedlist, DoubleLinkedList,
+			BalancedParentheses, Topostfix
+		};
+		process p;
+		switch (option) {
+
+		case 1: p = stack; break;
+		case 2: p = Qeue; break;
+		case 3: p = CircularQqeue; break;
+		case 4: p = Linkedlist; break;
+		case 5: p = DoubleLinkedList; break;
+		case 6: p = BalancedParentheses; break;
+		case 7: p = Topostfix; break;
+		}
+
+		if (p == stack) {
+
+			Stack c;
+			bool Close = NULL;
+			while (!Close) {
+				cout << "\n Choose one of the following . \n" <<
+					" 1. Push \n 2. Pop \n 3. Display \n 4. Top element \n 0. Back \n 00. Exit program : ";
+				int choose;
+				cin >> choose;
+				if (choose == 0) {
+					Back = true;
+					Close = true;
+				}
+				else if (choose == 00) {
+					Exit = true;
+				}
+				// push ..
+				 else if (choose == 1) {
+					bool loop = true;
+					while (loop) {
+						cout << " Enter the number you want to push \n";
+						int pushNo;
+						cin >> pushNo;
+						c.push(pushNo);
+						cout << " Number [ " << pushNo << " ] has been added \n" <<
+							" Do you want to add another number ? \n 1. YES \n 2. NO \n 0. back \n 00. Exit \n ";
+						int Yes;
+						cin >> Yes;
+						if (Yes == 0) {
+							Close = true;
+							Back = true;
+						}
+						else if (Yes == 2) loop = false;
+						else if (Yes == 00)Exit = true;
+						// i need to finish the push opration 
+
+					}
+				 }
+				// POP ..
+				 else if (choose == 2 && !Back) {
+					bool loop = true;
+					while (loop) {
+						if (c.Empty()) {
+							cout << "\n Stack is Empty \n";
+							loop = false;
+						}
+						else {
+							cout << "\n Number [ "<<
+							c.top_element();
+							cout << " ] has ben deleted \n";
+							cout << " This is the new top element [ "<<c.pop()<< " ] \n";
+							cout << " \n do you want to pop agin ? \n 1. YES \n 2. NO \n 0. back \n 00. Exit : ";
+							int Yes;
+							cin >> Yes;
+							if (Yes == 0) {
+								Close = true;
+								Back = true;
+							}
+							else if (Yes == 2) loop = false;
+							else if (Yes == 00) {
+								Exit = true;
+								loop = true;
+							}
+						}
+					}
+				}
+				// Display ..
+				 else if (choose == 3 && !Back) {
+					cout << endl;
+					c.display();
+					cout << "\n \n 0. back \n 00. Exit :";
+						int Yes;
+						cin >> Yes;
+						if (Yes == 0) {
+							Close = true;
+							Back = true;
+						}
+						else if (Yes == 00)Exit = true;
+					
+				}
+				
+			}
+			
+		}
+		
+	}
+
 	return 0;
 }
 
