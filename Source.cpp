@@ -454,169 +454,329 @@ public:
 	}
 
 };
-int main() { 
-	
- 
-	// --------------------Stack-----------------------------//
-	cout << "\n---------------------------\n" << " Stack class : \n";
+int main() {
+	cout << " \n pres .. 0 To automatically display \n " <<
+		" press .. 1 To choose  \n";
 
-	Stack c;
-	c.display(); c.push(10); c.push(20); c.push(30); c.display();
-	c.pop(); c.display();
+	int options; cin >> options;
+	if (options == 1) {
 
-	//..------------------Qeue-------------------------------..//
-	cout << "\n\n---------------------------\n"<< " Qeue class : \n";
 
-	Qeue q;
-	q.display(); q.enqeue(1); q.enqeue(2); q.enqeue(3); q.enqeue(4); q.deqeue();
-	q.display();
-	//..------------------circular_Qeue---------------------..//
-	cout << "\n\n-----------------------------\n" << " Cirqular Qeue class : \n";
-	circular_Queue cq;
-	cq.display(); cq.enQueue(1); cq.enQueue(2); cq.enQueue(3);
-	cq.enQueue(4); cq.enQueue(5); cq.display();
-	cq.enQueue(6);
-	//..----------------Linked_List------------------------..//
-	cout << "\n\n------------------------------\n" << " Linked List class : \n";
-	Linkedlist Llist;
-	Llist.displayNode();
-	Llist.isertnode(1); Llist.isertnode(2); Llist.delet_node(2);
-	Llist.isertnode(3); Llist.displayNode(); Llist.inser_at_beginnig(0);
-	Llist.inser_at_beginnig(-1);
-	Llist.displayNode(); Llist.delete_at_beginning();
-	Llist.delete_at_end(); Llist.displayNode();
-	//------------------double Linked list------------------//
-	cout << "\n\n-------------------------------\n"<< "double Linked list : \n";
-	Double_linkedList DLs;
-	DLs.addNode(1); DLs.addNode(2); DLs.addNode(3); DLs.addNode(4);
-	DLs.addNode(5);
-	DLs.Display();
-	DLs.Display_forwardBackward(1);
-	DLs.Display_forwardBackward(3);
-	DLs.Display_forwardBackward(5);
-	//---------------------blanced parentheses------------//
-	cout << "\n\n------------------------------------\n"<< "Balaned or not : \n";
-	
-	Balanced_parentheses balance;
-	balance.print("[]");
-	balance.print(")(()()())(((");
- 
-	//---------------------ToPostfix----------------------//
-	cout << "\n\n------------------------------------------\n" << "To Postfix : \n";
-	To_Postfix tps;
-	tps.infixExpression("8+2*5-(5+3)");
-	tps.infixExpression("a+(c*d)/x-c");
-	//---------------------------------------------------//
-	bool Exit = false;
-	while (!Exit) {
-		bool Back = false;
-		cout << " \n \n Choose one of the following options by its number .";
-		cout << " \n 1. Stack \n 2. Qeue \n 3. Circular qeue \n 4. Linkedlist \n 5. Double Linked list " <<
-			"\n 6. Balanced parentheses \n 7. Topostfix \n 0. Exit program \n";
-		int option;
-		cin >> option;
-		if (option == 0) Exit = true;
-		enum process {
-			stack, Qeue, CircularQqeue, Linkedlist, DoubleLinkedList,
-			BalancedParentheses, Topostfix
-		};
-		process p;
-		switch (option) {
 
-		case 1: p = stack; break;
-		case 2: p = Qeue; break;
-		case 3: p = CircularQqeue; break;
-		case 4: p = Linkedlist; break;
-		case 5: p = DoubleLinkedList; break;
-		case 6: p = BalancedParentheses; break;
-		case 7: p = Topostfix; break;
-		}
+		// --------------------Stack-----------------------------//
+		cout << "\n---------------------------\n" << " Stack class : \n";
 
-		if (p == stack) {
+		Stack c;
+		c.display(); c.push(10); c.push(20); c.push(30); c.display();
+		c.pop(); c.display();
 
-			Stack c;
-			bool Close = NULL;
-			while (!Close) {
-				cout << "\n Choose one of the following . \n" <<
-					" 1. Push \n 2. Pop \n 3. Display \n 4. Top element \n 0. Back \n 00. Exit program : ";
-				int choose;
-				cin >> choose;
-				if (choose == 0) {
-					Back = true;
-					Close = true;
-				}
-				else if (choose == 00) {
-					Exit = true;
-				}
-				// push ..
-				 else if (choose == 1) {
-					bool loop = true;
-					while (loop) {
-						cout << " Enter the number you want to push \n";
-						int pushNo;
-						cin >> pushNo;
-						c.push(pushNo);
-						cout << " Number [ " << pushNo << " ] has been added \n" <<
-							" Do you want to add another number ? \n 1. YES \n 2. NO \n 0. back \n 00. Exit \n ";
+		//..------------------Qeue-------------------------------..//
+		cout << "\n\n---------------------------\n" << " Qeue class : \n";
+
+		Qeue q;
+		q.display(); q.enqeue(1); q.enqeue(2); q.enqeue(3); q.enqeue(4); q.deqeue();
+		q.display();
+		//..------------------circular_Qeue---------------------..//
+		cout << "\n\n-----------------------------\n" << " Cirqular Qeue class : \n";
+		circular_Queue cq;
+		cq.display(); cq.enQueue(1); cq.enQueue(2); cq.enQueue(3);
+		cq.enQueue(4); cq.enQueue(5); cq.display();
+		cq.enQueue(6);
+		//..----------------Linked_List------------------------..//
+		cout << "\n\n------------------------------\n" << " Linked List class : \n";
+		Linkedlist Llist;
+		Llist.displayNode();
+		Llist.isertnode(1); Llist.isertnode(2); Llist.delet_node(2);
+		Llist.isertnode(3); Llist.displayNode(); Llist.inser_at_beginnig(0);
+		Llist.inser_at_beginnig(-1);
+		Llist.displayNode(); Llist.delete_at_beginning();
+		Llist.delete_at_end(); Llist.displayNode();
+		//------------------double Linked list------------------//
+		cout << "\n\n-------------------------------\n" << "double Linked list : \n";
+		Double_linkedList DLs;
+		DLs.addNode(1); DLs.addNode(2); DLs.addNode(3); DLs.addNode(4);
+		DLs.addNode(5);
+		DLs.Display();
+		DLs.Display_forwardBackward(1);
+		DLs.Display_forwardBackward(3);
+		DLs.Display_forwardBackward(5);
+		//---------------------blanced parentheses------------//
+		cout << "\n\n------------------------------------\n" << "Balaned or not : \n";
+
+		Balanced_parentheses balance;
+		balance.print("[]");
+		balance.print(")(()()())(((");
+
+		//---------------------ToPostfix----------------------//
+		cout << "\n\n------------------------------------------\n" << "To Postfix : \n";
+		To_Postfix tps;
+		tps.infixExpression("8+2*5-(5+3)");
+		tps.infixExpression("a+(c*d)/x-c");
+		tps.infixExpression("1+23*y%4(a+12*34)");
+		//---------------------------------------------------//
+	}
+	else if (options == 2) {
+
+
+		bool Exit = false;
+		while (!Exit) {
+			bool Back = false;
+			cout << " \n \n Choose one of the following options by its number .";
+			cout << " \n 1. Stack \n 2. Qeue \n 3. Circular qeue \n 4. Linkedlist \n 5. Double Linked list " <<
+				"\n 6. Balanced parentheses \n 7. Topostfix \n 0. Exit program \n";
+			int option;
+			cin >> option;
+			if (option == 0) Exit = true;
+			enum process {
+				stack, qeue, CircularQqeue, Linkedlist, DoubleLinkedList,
+				BalancedParentheses, Topostfix
+			};
+			process p;
+			switch (option) {
+
+			case 1: p = stack; break;
+			case 2: p = qeue; break;
+			case 3: p = CircularQqeue; break;
+			case 4: p = Linkedlist; break;
+			case 5: p = DoubleLinkedList; break;
+			case 6: p = BalancedParentheses; break;
+			case 7: p = Topostfix; break;
+			}
+
+			if (p == stack) {
+
+				Stack c;
+				bool Close = false;
+				while (!Close) {
+					cout << "\n Choose one of the following . \n" <<
+						" 1. Push \n 2. Pop \n 3. Display \n 4. Top element \n 0. Back \n 00. Exit program : ";
+					int choose;
+					cin >> choose;
+					if (choose == 0) {
+						Back = true;
+						Close = true;
+					}
+					else if (choose == 00) {
+						Exit = true;
+					}
+					// push ..
+					else if (choose == 1) {
+						bool loop = true;
+						while (loop) {
+							cout << " Enter the number you want to push \n";
+							int pushNo;
+							cin >> pushNo;
+							c.push(pushNo);
+							cout << " Number [ " << pushNo << " ] has been added \n" <<
+								" Do you want to add another number ? \n 1. YES \n 2. NO \n 0. back \n 00. Home : ";
+							string Yes;
+							cin >> Yes;
+							if (Yes == "0") {
+								Close = true;
+								Back = true;
+								loop = false;
+							}
+							else if (Yes == "2") loop = false;
+							else if (Yes == "00")Exit = true;
+							else {
+								cout << "please try again... \n";
+								Close = true;
+								//Back = true;
+								//Exit = false;
+								loop = false;
+							}
+							// i need to finish the push opration 
+
+						}
+					}
+					// POP ..
+					else if (choose == 2 && !Back) {
+						bool loop = true;
+						while (loop) {
+							if (c.Empty()) {
+								cout << "\n Stack is Empty \n";
+								loop = false;
+							}
+							else {
+								cout << "\n Number [ " <<
+									c.top_element();
+								cout << " ] has ben deleted \n";
+								cout << " This is the new top element [ " << c.pop() << " ] \n";
+								cout << " \n do you want to pop agin ? \n 1. YES \n 2. NO \n 0. back \n 00. Exit : ";
+								int Yes;
+								cin >> Yes;
+								if (Yes == 0) {
+									Close = true;
+									Back = true;
+								}
+								else if (Yes == 2) loop = false;
+								else if (Yes == 00) {
+									Exit = true;
+									loop = true;
+								}
+							}
+						}
+					}
+					// Display ..
+					else if (choose == 3 && !Back) {
+						cout << endl;
+						c.display();
+						cout << "\n \n 0. back \n 00. Exit :";
 						int Yes;
 						cin >> Yes;
 						if (Yes == 0) {
 							Close = true;
 							Back = true;
 						}
-						else if (Yes == 2) loop = false;
 						else if (Yes == 00)Exit = true;
-						// i need to finish the push opration 
+					}
+					// Top element ..
+					else if (choose == 4 && !Back) {
+						cout << endl << " [ " << c.top_element() << " ] " << endl;
+						cout << "\n \n 0. back \n 00. Exit :";
+						int Yes;
+						cin >> Yes;
+						if (Yes == 0) {
+							Close = true;
+							Back = true;
+						}
+						else if (Yes == 00)Exit = true;
+					}
+
+				}
+
+			}
+
+			else if (p == qeue) {
+				bool Close = false;
+				Qeue qe;
+				bool loop = true;
+				while (loop) {
+					cout << "\n Choose one of the following . \n" <<
+						" 1. EnQeue \n 2. DeQeue \n 3. Display Qeue \n 0. back \n 00. Home : ";
+					int choose;
+					cin >> choose;
+					if (choose == 0 ) {
+						Back = true;
+						loop = false;
+					}
+					else if (choose == 00) {
+						Exit = true;
+						loop = false;
 
 					}
-				 }
-				// POP ..
-				 else if (choose == 2 && !Back) {
-					bool loop = true;
-					while (loop) {
-						if (c.Empty()) {
-							cout << "\n Stack is Empty \n";
-							loop = false;
+					else if (choose == 1) {
+						bool add = true;
+						while (add) {
+							cout << "\n Enter the number you want to add \n";
+							int enqeueNo;
+							cin >> enqeueNo;
+							qe.enqeue(enqeueNo);
+							cout << " Number [ " << enqeueNo << " ] has been added \n" <<
+								" Do you want to add another number ? \n 1. YES \n 2. NO \n 0. back \n 00. Home : ";
+
+							int Yes;
+							cin >> Yes;
+							if (Yes == 1)continue;
+							else if (Yes == 0) {
+								Close = true;
+								Back = true;
+								add = false;
+							}
+							else if (Yes == 2) {
+								
+								add = false;
+							}
+							else if (Yes == 00) {
+								Exit = true;
+								loop = false;
+								add = false;
+							}
 						}
-						else {
-							cout << "\n Number [ "<<
-							c.top_element();
-							cout << " ] has ben deleted \n";
-							cout << " This is the new top element [ "<<c.pop()<< " ] \n";
-							cout << " \n do you want to pop agin ? \n 1. YES \n 2. NO \n 0. back \n 00. Exit : ";
+					}
+					else if (choose == 2) {	
+						bool remove = true;
+						while (remove) {
+							cout << " \n  ..";
+							qe.deqeue();
+
+							cout << " \n" <<
+								" Do you want to delete another number ? \n 1. YES \n 2. NO \n 0. back \n 00. Home : ";
 							int Yes;
 							cin >> Yes;
 							if (Yes == 0) {
 								Close = true;
 								Back = true;
+								remove = false;
+							}
+							else if (Yes == 1)continue;
+							else if (Yes == 2) remove = false;
+							else if (Yes == 00) {
+								loop = false;
+								Exit = true;
+								remove = false;
+							}
+						}
+					
+				
+
+
+						// i need to continue this method and closeing options ;
+						// maybe i got a probrem in this method 
+
+						// .. i will test this method 
+					}
+				}
+
+			}
+			// i will remake this method ..
+			else if (p == CircularQqeue) {
+				circular_Queue C;
+				bool Close = false;
+				bool loop = true;
+				while (loop) {
+					cout << "\n Choose one of the following . \n" <<
+						" 1. EnQeue \n 2. DeQeue \n 3. Display Qeue \n 0. back \n 00. Home : ";
+					int choose;
+					cin >> choose;
+					if (choose == 2) {
+						if (!C.isFull()) {
+							cout << "\n Error .. There are no elements  \n";
+						}
+						else {
+							cout << " \n Enter the number you want to remove \n";
+							int deQeueNo;
+							cin >> deQeueNo;
+							//cout << C.deQueue();
+							cout << " Number [ " << C.deQueue() << " ] has been deleted \n" <<
+								" Do you want to delete another number ? \n 1. YES \n 2. NO \n 0. back \n 00. Home : ";
+							int Yes;
+							cin >> Yes;
+							if (Yes == 0) {
+								Close = true;
+								Back = true;
+								loop = false;
 							}
 							else if (Yes == 2) loop = false;
 							else if (Yes == 00) {
+								loop = false;
 								Exit = true;
-								loop = true;
 							}
 						}
 					}
-				}
-				// Display ..
-				 else if (choose == 3 && !Back) {
-					cout << endl;
-					c.display();
-					cout << "\n \n 0. back \n 00. Exit :";
-						int Yes;
-						cin >> Yes;
-						if (Yes == 0) {
-							Close = true;
-							Back = true;
+					else if (p == 2) {
+						if (C.isEmpty()) {
+							cout << " \n Eroor \n";
 						}
-						else if (Yes == 00)Exit = true;
-					
+						else {
+							cout << " \n Number [" << C.deQueue() << " ] has been deleted \n";
+
+						}
+					}
 				}
-				
 			}
-			
+
 		}
-		
 	}
 
 	return 0;
