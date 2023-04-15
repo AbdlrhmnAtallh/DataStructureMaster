@@ -456,22 +456,7 @@ public:
 
 };
 int main() {
-	HANDLE console_color;
-	console_color = GetStdHandle(
-		STD_OUTPUT_HANDLE);
-	SetConsoleTextAttribute(
-		console_color,1);
-	for (int P = 1; P < 50; P++) {
-
-		// P is color code of the
-		// corresponding color
-		SetConsoleTextAttribute(
-			console_color, P);
-
-		// Print Statement
-		cout << P << " Hello, "
-			<< "good night!!!";
-	}
+	
 	cout << " \n pres .. 0 To automatically display \n " <<
 		" press .. 1 To choose  \n";
 
@@ -887,7 +872,7 @@ int main() {
 								add = false;
 							}
 						}
-						
+
 					}
 					else if (choose == 3) {
 						bool remove = true;
@@ -903,7 +888,7 @@ int main() {
 							else if (Yes == 0) {
 
 								Back = true;
-								remove  = false;
+								remove = false;
 							}
 							else if (Yes == 2) {
 
@@ -945,7 +930,7 @@ int main() {
 					}
 					else if (choose == 5) {
 						Lin.displayNode();
-						
+
 					}
 					else if (choose == 6) {
 						bool remove = true;
@@ -971,7 +956,119 @@ int main() {
 							}
 						}
 					}
-				
+
+				}
+			}
+			
+			else if (p == DoubleLinkedList) {
+				Double_linkedList dbs;
+				bool loop = true;
+				while (loop) {
+					cout << " \n  Choose one of the following . \n" <<
+						" 1. Add node \n 2. Display the previous and next item  \n 3. Display All \n 0. back \n 00. Home :";
+					int choose;
+					cin >> choose;
+					if (choose == 1) {
+						bool add= true;
+						while (add) {
+							cout << "\n Enter the nuber you want to add \n : ";
+							int number;
+							cin >> number;
+							dbs.addNode(number);
+
+							cout << " \n do you want to add again ? \n 1. YES \n 2. NO \n 0. back \n 00. Home :  \n ";
+							int Yes;
+							cin >> Yes;
+							if (Yes == 1)continue;
+							else if (Yes == 0) {
+
+								Back = true;
+
+							}
+							else if (Yes == 2) {
+								add = false;
+								//loop = false;
+							}
+							else if (Yes == 00) {
+								Exit = true;
+								loop = false;
+								add = false;
+
+							}
+						}
+
+					}
+					else if (choose == 2) {
+						bool display = true;
+						while (display) {
+						cout << " \n enter the number of node \n";
+						int number;
+						cin >> number;
+						dbs.Display_forwardBackward(number);
+							cout << " \n do you want to display another item ? \n 1. YES \n 2. NO \n 0. back \n 00. Home :  \n ";
+							int Yes;
+							cin >> Yes;
+							if (Yes == 1)continue;
+							else if (Yes == 0) {
+
+								Back = true;
+
+							}
+							else if (Yes == 2) {
+								display = false;
+
+							}
+							else if (Yes == 00) {
+								Exit = true;
+								loop = false;
+								display = false;
+
+							}
+						}
+
+					}
+					else if (choose == 3) {
+						dbs.Display();
+					}
+					
+					
+					else if (choose == 00) {
+						Exit = true;
+						loop = false;
+						
+
+					}
+				}
+			}
+			else if (p == BalancedParentheses) {
+				bool loop = true;
+					Balanced_parentheses Balance;
+					cout<<	" Example 1 .. {([])} ... This is balanced \n\n " <<
+						" Example 2 .. }{(}[))][}{)((] ... This is not balanced \n ";
+				while (loop) {
+					cout << " \n Enter parentheses :\n ";
+					string x;
+					cin >> x;
+					Balance.print(x);
+					cout << " \n Do it again ? \n 1. YES \n 2. NO \n 0. back \n 00. Home :  \n ";
+					int Yes;
+					cin >> Yes;
+					if (Yes == 1)continue;
+					else if (Yes == 0) {
+
+						Back = true;
+
+					}
+					else if (Yes == 2) {
+						loop = false;
+
+					}
+					else if (Yes == 00) {
+						Exit = true;
+						loop = false;
+						
+
+					}
 				}
 			}
 
