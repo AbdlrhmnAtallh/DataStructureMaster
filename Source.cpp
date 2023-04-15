@@ -2,6 +2,7 @@
 #include<string>
 #include<algorithm>
 #include<stack>
+#include <windows.h>
 using namespace std;
 
 const int Size = 5;
@@ -335,7 +336,7 @@ public:
 	}
 	void delet_node(int value) {
 		if (head == NULL) {
-			cout << " Can't delete \n";
+			cout << " Can't delete No elements \n";
 			return;
 		}
 			node* deleter_temp = head;
@@ -455,11 +456,27 @@ public:
 
 };
 int main() {
+	HANDLE console_color;
+	console_color = GetStdHandle(
+		STD_OUTPUT_HANDLE);
+	SetConsoleTextAttribute(
+		console_color,1);
+	for (int P = 1; P < 50; P++) {
+
+		// P is color code of the
+		// corresponding color
+		SetConsoleTextAttribute(
+			console_color, P);
+
+		// Print Statement
+		cout << P << " Hello, "
+			<< "good night!!!";
+	}
 	cout << " \n pres .. 0 To automatically display \n " <<
 		" press .. 1 To choose  \n";
 
 	int options; cin >> options;
-	if (options == 1) {
+	if (options == 0) {
 
 
 
@@ -515,7 +532,7 @@ int main() {
 		tps.infixExpression("1+23*y%4(a+12*34)");
 		//---------------------------------------------------//
 	}
-	else if (options == 2) {
+	else if (options == 1) {
 
 
 		bool Exit = false;
@@ -528,7 +545,7 @@ int main() {
 			cin >> option;
 			if (option == 0) Exit = true;
 			enum process {
-				stack, qeue, CircularQqeue, Linkedlist, DoubleLinkedList,
+				stack, qeue, CircularQqeue, Linked_list, DoubleLinkedList,
 				BalancedParentheses, Topostfix
 			};
 			process p;
@@ -537,7 +554,7 @@ int main() {
 			case 1: p = stack; break;
 			case 2: p = qeue; break;
 			case 3: p = CircularQqeue; break;
-			case 4: p = Linkedlist; break;
+			case 4: p = Linked_list; break;
 			case 5: p = DoubleLinkedList; break;
 			case 6: p = BalancedParentheses; break;
 			case 7: p = Topostfix; break;
@@ -694,7 +711,7 @@ int main() {
 							}
 						}
 					}
-					else if (choose == 2) {	
+					else if (choose == 2) {
 						bool remove = true;
 						while (remove) {
 							cout << " \n  ..";
@@ -717,15 +734,18 @@ int main() {
 								remove = false;
 							}
 						}
-					
-				
-
-
-						// i need to continue this method and closeing options ;
-						// maybe i got a probrem in this method 
-
-						// .. i will test this method 
+						
 					}
+						// display qeue .. 
+					else if (choose == 3) {
+						cout << "\n ... \t \t ...\n ";
+						qe.display();
+						cout << "\n ... \t \t ...\n ";
+
+					}
+
+
+					
 				}
 
 			}
@@ -739,15 +759,44 @@ int main() {
 						" 1. EnQeue \n 2. DeQeue \n 3. Display Qeue \n 0. back \n 00. Home : ";
 					int choose;
 					cin >> choose;
-					if (choose == 2) {
+					if (choose == 1) {
+						bool add = true;
+						while (add) {
+							if (C.isFull()) {
+								cout << " \n Error .. No space \n";
+							}
+							else
+								cout << "\n Enter the number you want to add : \n";
+							int enQeue;
+							cin >> enQeue;
+							C.enQueue(enQeue);
+							cout << "\n Do you want to add another number  \n 1. YES \n 2. NO \n 0. back \n 00. Home :  \n";
+							int Yes;
+							cin >> Yes;
+							if (Yes == 1)continue;
+							else if (Yes == 0) {
+								Close = true;
+								Back = true;
+								add = false;
+							}
+							else if (Yes == 2) {
+
+								add = false;
+							}
+							else if (Yes == 00) {
+								Exit = true;
+								loop = false;
+								add = false;
+							}
+						}
+					}
+					else if (choose == 2) {
 						if (!C.isFull()) {
 							cout << "\n Error .. There are no elements  \n";
 						}
 						else {
-							cout << " \n Enter the number you want to remove \n";
 							int deQeueNo;
 							cin >> deQeueNo;
-							//cout << C.deQueue();
 							cout << " Number [ " << C.deQueue() << " ] has been deleted \n" <<
 								" Do you want to delete another number ? \n 1. YES \n 2. NO \n 0. back \n 00. Home : ";
 							int Yes;
@@ -764,15 +813,165 @@ int main() {
 							}
 						}
 					}
-					else if (p == 2) {
+					else if (choose == 3) {
 						if (C.isEmpty()) {
-							cout << " \n Eroor \n";
+							cout << " \n Eroor .. there are no elements \n";
 						}
 						else {
-							cout << " \n Number [" << C.deQueue() << " ] has been deleted \n";
+							C.display();
 
 						}
 					}
+				}
+			}
+			else if (p == Linked_list) {
+				Linkedlist Lin;
+				bool loop = true;
+				while (loop) {
+					cout << "\n Choose one of the following . \n" <<
+						" 1. Isert node \n 2. Inser at beginnig \n 3. Delet node " <<
+						"\n 4. Delete at beginning \n 5. Display \n 6. Delete at end  \n  0. back \n 00. Home : ";
+					int choose;
+					cin >> choose;
+					if (choose == 00 || choose == 0)loop = false;
+					if (choose == 1) {
+						bool add = true;
+						while (add) {
+							cout << "\n Enter the number you want to add \n ";
+							int Number;
+							cin >> Number;
+							Lin.isertnode(Number);
+							cout << "\n Do you want to add another number  \n 1. YES \n 2. NO \n 0. back \n 00. Home :  \n";
+							int Yes;
+							cin >> Yes;
+							if (Yes == 1)continue;
+							else if (Yes == 0) {
+
+								Back = true;
+								add = false;
+							}
+							else if (Yes == 2) {
+
+								add = false;
+							}
+							else if (Yes == 00) {
+								Exit = true;
+								loop = false;
+								add = false;
+							}
+						}
+					}
+					else if (choose == 2) {
+						bool add = true;
+						while (add) {
+							cout << "\n Enter the number you want to add at beginning \n ";
+							int Number;
+							cin >> Number;
+							Lin.inser_at_beginnig(Number);
+							cout << "\n Do you want to add another number at beginning  \n 1. YES \n 2. NO \n 0. back \n 00. Home :  \n";
+							int Yes;
+							cin >> Yes;
+							if (Yes == 1)continue;
+							else if (Yes == 0) {
+
+								Back = true;
+								add = false;
+							}
+							else if (Yes == 2) {
+
+								add = false;
+							}
+							else if (Yes == 00) {
+								Exit = true;
+								loop = false;
+								add = false;
+							}
+						}
+						
+					}
+					else if (choose == 3) {
+						bool remove = true;
+						while (remove) {
+							cout << "\n Enter the number you want to remove \n";
+							int Number;
+							cin >> Number;
+							Lin.delet_node(Number);
+							cout << "\n Do you want to delete another number  \n 1. YES \n 2. NO \n 0. back \n 00. Home :  \n";
+							int Yes;
+							cin >> Yes;
+							if (Yes == 1)continue;
+							else if (Yes == 0) {
+
+								Back = true;
+								remove  = false;
+							}
+							else if (Yes == 2) {
+
+								remove = false;
+							}
+							else if (Yes == 00) {
+								Exit = true;
+								loop = false;
+								remove = false;
+							}
+
+						}
+					}
+					else if (choose == 4) {
+						bool remove = true;
+						while (remove) {
+							cout << " \n [ " << Lin.head->data << " ] Deleted \n ";
+							Lin.delete_at_beginning();
+							cout << " \n do you want to delete again ? \n 1. YES \n 2. NO \n 0. back \n 00. Home :  \n ";
+							int Yes;
+							cin >> Yes;
+							if (Yes == 1)continue;
+							else if (Yes == 0) {
+
+								Back = true;
+								remove = false;
+							}
+							else if (Yes == 2) {
+
+								remove = false;
+							}
+							else if (Yes == 00) {
+								Exit = true;
+								loop = false;
+								remove = false;
+							}
+
+						}
+					}
+					else if (choose == 5) {
+						Lin.displayNode();
+						
+					}
+					else if (choose == 6) {
+						bool remove = true;
+						while (remove) {
+							Lin.delete_at_end();
+							cout << " \n do you want to delete at end again ? \n 1. YES \n 2. NO \n 0. back \n 00. Home :  \n ";
+							int Yes;
+							cin >> Yes;
+							if (Yes == 1)continue;
+							else if (Yes == 0) {
+
+								Back = true;
+								remove = false;
+							}
+							else if (Yes == 2) {
+
+								remove = false;
+							}
+							else if (Yes == 00) {
+								Exit = true;
+								loop = false;
+								remove = false;
+							}
+						}
+					}
+				
 				}
 			}
 
