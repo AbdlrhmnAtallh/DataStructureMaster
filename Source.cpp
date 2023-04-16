@@ -1072,6 +1072,40 @@ int main() {
 				}
 			}
 
+			else if (p == Topostfix) {
+				To_Postfix TP;
+				bool Continue = true;
+				while (Continue) {
+					cout << "\n Exqmple .. \n 1. (2+2)*50/(5*22) = 22+50*522*/ \n" <<
+						" Example .. \n 2. 40/2*5(3+3)-10 = 402/533+*10- \n";
+					cout << " \n Enter an arithmeitc sentence \n";
+					string statement;
+					cin >> statement;
+					cout << endl;
+					TP.infixExpression(statement);
+					cout << endl;
+					cout << " \n Do it again ? \n 1. YES \n 2. NO \n 0. back \n 00. Home :  \n ";
+					int Yes;
+					cin >> Yes;
+					if (Yes == 1)continue;
+					else if (Yes == 0) {
+
+						Back = true;
+						Continue = false;
+					}
+					else if (Yes == 2) {
+						Continue = false;
+
+					}
+					else if (Yes == 00) {
+						Exit = true;
+						Continue = false;
+
+
+					}
+				}
+			}
+
 		}
 	}
 
