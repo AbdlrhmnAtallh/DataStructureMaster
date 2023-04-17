@@ -650,7 +650,7 @@ int main() {
 			}
 
 			else if (p == qeue) {
-				bool Close = false;
+				
 				Qeue qe;
 				bool loop = true;
 				while (loop) {
@@ -681,7 +681,7 @@ int main() {
 							cin >> Yes;
 							if (Yes == 1)continue;
 							else if (Yes == 0) {
-								Close = true;
+								
 								Back = true;
 								add = false;
 							}
@@ -707,7 +707,7 @@ int main() {
 							int Yes;
 							cin >> Yes;
 							if (Yes == 0) {
-								Close = true;
+								
 								Back = true;
 								remove = false;
 							}
@@ -737,7 +737,7 @@ int main() {
 			// i will remake this method ..
 			else if (p == CircularQqeue) {
 				circular_Queue C;
-				bool Close = false;
+				
 				bool loop = true;
 				while (loop) {
 					cout << "\n Choose one of the following . \n" <<
@@ -760,7 +760,7 @@ int main() {
 							cin >> Yes;
 							if (Yes == 1)continue;
 							else if (Yes == 0) {
-								Close = true;
+								
 								Back = true;
 								add = false;
 							}
@@ -787,7 +787,7 @@ int main() {
 							int Yes;
 							cin >> Yes;
 							if (Yes == 0) {
-								Close = true;
+								
 								Back = true;
 								loop = false;
 							}
