@@ -455,14 +455,62 @@ public:
 	}
 
 };
+// Method to ask user if he wants to add more items 
+
+void PrintCloseOptions() {
+	string arr = "Click 0 To Close";
+	int ArrCount = 0;
+	for (int i = 0; i <= 2; i++) {
+		for (int j = 0; j <= 105; j++) {
+
+			if (i == 0 && j >= 85 && j <= 104 || i == 2 && j >= 85 && j <= 104) {
+				cout << "-";
+			}
+			else if (i != 0 && i != 2 && j == 85) {
+				cout << "|";
+			}
+			else if (i != 0 && i != 2 && j == 104) {
+				cout << "|";
+			}
+			else if (i == 1 && j >= 87 && j <= 102) {
+				cout << arr[ArrCount];
+				ArrCount++;
+			}
+			else cout << " ";
+
+		}cout << endl;
+	}
+}
+void loopornot(bool& loop, bool& Close, bool& Exit) {
+	PrintCloseOptions();
+	int repeat;
+	cin >> repeat;
+	if (repeat == 2) {
+		loop = false;
+	}
+	else if (repeat == 3) {
+		Close = true;
+		loop = false;
+	}
+	else if (repeat == 0) {
+		Exit = true;
+		loop = false;
+		Close = true;
+	}
+	else {
+		cout << "\nUnknown input\n";
+		loop = false;
+	}
+
+}
+
 int main() {
-	
+
 	cout << " \n pres .. 0 To automatically display \n " <<
 		" press .. 1 To choose  \n";
 
 	int options; cin >> options;
 	if (options == 0) {
-
 
 
 		// --------------------Stack-----------------------------//
@@ -520,9 +568,10 @@ int main() {
 	else if (options == 1) {
 
 
-		bool Exit = false;
+		bool Exit = false; 
 		while (!Exit) {
 			bool Back = false;
+			// Main List 
 			cout << " \n \n Choose one of the following options by its number .";
 			cout << " \n 1. Stack \n 2. Qeue \n 3. Circular qeue \n 4. Linkedlist \n 5. Double Linked list " <<
 				"\n 6. Balanced parentheses \n 7. Topostfix \n 0. Exit program \n";
@@ -551,18 +600,17 @@ int main() {
 				bool Close = false;
 				while (!Close) {
 					cout << "\n Choose one of the following . \n" <<
-						" 1. Push \n 2. Pop \n 3. Display \n 4. Top element \n 0. Back \n 00. Exit program : ";
-					int choose;
-					cin >> choose;
-					if (choose == 0) {
-						Back = true;
+						" 1. Push \n 2. Pop \n 3. Display \n 4. Top element \n 9. Home : \n";
+					PrintCloseOptions();
+					int input;
+					cin >> input;
+					if (input == 0) {
+						Exit = true;
 						Close = true;
 					}
-					else if (choose == 00) {
-						Exit = true;
-					}
+					else if (input == 9)Close = true;
 					// push ..
-					else if (choose == 1) {
+					 if (input == 1) {
 						bool loop = true;
 						while (loop) {
 							cout << " Enter the number you want to push \n";
@@ -570,29 +618,14 @@ int main() {
 							cin >> pushNo;
 							c.push(pushNo);
 							cout << " Number [ " << pushNo << " ] has been added \n" <<
-								" Do you want to add another number ? \n 1. YES \n 2. NO \n 0. back \n 00. Home : ";
-							string Yes;
-							cin >> Yes;
-							if (Yes == "0") {
-								Close = true;
-								Back = true;
-								loop = false;
-							}
-							else if (Yes == "2") loop = false;
-							else if (Yes == "00")Exit = true;
-							else {
-								cout << "please try again... \n";
-								Close = true;
-								//Back = true;
-								//Exit = false;
-								loop = false;
-							}
-							// i need to finish the push opration 
+								" Do you want to add another number ? \n 1. YES \n 2. NO \n 3. Home :\n ";
+							
+							loopornot(loop, Close , Exit);
 
 						}
 					}
 					// POP ..
-					else if (choose == 2 && !Back) {
+					else if (input == 2) {
 						bool loop = true;
 						while (loop) {
 							if (c.Empty()) {
@@ -604,45 +637,22 @@ int main() {
 									c.top_element();
 								cout << " ] has ben deleted \n";
 								cout << " This is the new top element [ " << c.pop() << " ] \n";
-								cout << " \n do you want to pop agin ? \n 1. YES \n 2. NO \n 0. back \n 00. Exit : ";
-								int Yes;
-								cin >> Yes;
-								if (Yes == 0) {
-									Close = true;
-									Back = true;
-								}
-								else if (Yes == 2) loop = false;
-								else if (Yes == 00) {
-									Exit = true;
-									loop = true;
-								}
+								cout << " \n do you want to pop agin ? \n 1. YES \n 2. NO \n 3. Home :\n";
+								loopornot(loop, Close, Exit);
 							}
 						}
 					}
 					// Display ..
-					else if (choose == 3 && !Back) {
+					else if (input == 3) {
 						cout << endl;
 						c.display();
-						cout << "\n \n 0. back \n 00. Exit :";
-						int Yes;
-						cin >> Yes;
-						if (Yes == 0) {
-							Close = true;
-							Back = true;
-						}
-						else if (Yes == 00)Exit = true;
+						PrintCloseOptions();
+						
 					}
 					// Top element ..
-					else if (choose == 4 && !Back) {
+					else if (input == 4 ) {
 						cout << endl << " [ " << c.top_element() << " ] " << endl;
-						cout << "\n \n 0. back \n 00. Exit :";
-						int Yes;
-						cin >> Yes;
-						if (Yes == 0) {
-							Close = true;
-							Back = true;
-						}
-						else if (Yes == 00)Exit = true;
+						
 					}
 
 				}
@@ -652,101 +662,64 @@ int main() {
 			else if (p == qeue) {
 				
 				Qeue qe;
-				bool loop = true;
-				while (loop) {
+				bool Close = false;
+				while (!Close) {
 					cout << "\n Choose one of the following . \n" <<
-						" 1. EnQeue \n 2. DeQeue \n 3. Display Qeue \n 0. back \n 00. Home : ";
-					int choose;
-					cin >> choose;
-					if (choose == 0 ) {
-						Back = true;
-						loop = false;
-					}
-					else if (choose == 00) {
+						" 1. EnQeue \n 2. DeQeue \n 3. Display Qeue \n 9. Home : ";
+					int input;
+					cin >> input;
+					if (input == 9 ) {
+						Close = false;
 						Exit = true;
-						loop = false;
-
 					}
-					else if (choose == 1) {
-						bool add = true;
-						while (add) {
+					
+					else if (input == 1) {
+						bool loop = true;
+						while (loop) {
 							cout << "\n Enter the number you want to add \n";
 							int enqeueNo;
 							cin >> enqeueNo;
 							qe.enqeue(enqeueNo);
 							cout << " Number [ " << enqeueNo << " ] has been added \n" <<
-								" Do you want to add another number ? \n 1. YES \n 2. NO \n 0. back \n 00. Home : ";
+								" Do you want to add another number ? \n 1. YES \n 2. NO \n 9. Home : \n";
+							loopornot(loop, Close, Exit);
 
-							int Yes;
-							cin >> Yes;
-							if (Yes == 1)continue;
-							else if (Yes == 0) {
-								
-								Back = true;
-								add = false;
-							}
-							else if (Yes == 2) {
-								
-								add = false;
-							}
-							else if (Yes == 00) {
-								Exit = true;
-								loop = false;
-								add = false;
-							}
 						}
 					}
-					else if (choose == 2) {
-						bool remove = true;
-						while (remove) {
+					else if (input == 2) {
+						bool loop = true;
+						while (loop) {
 							cout << " \n  ..";
 							qe.deqeue();
-
+							// i need to control if qeue is empty..
 							cout << " \n" <<
-								" Do you want to delete another number ? \n 1. YES \n 2. NO \n 0. back \n 00. Home : ";
-							int Yes;
-							cin >> Yes;
-							if (Yes == 0) {
-								
-								Back = true;
-								remove = false;
-							}
-							else if (Yes == 1)continue;
-							else if (Yes == 2) remove = false;
-							else if (Yes == 00) {
-								loop = false;
-								Exit = true;
-								remove = false;
-							}
+								" Do you want to delete another number ? \n 1. YES \n 2. NO \n 9. Home : \n";
+							loopornot(loop, Close, Exit);
 						}
 						
 					}
 						// display qeue .. 
-					else if (choose == 3) {
+					else if (input == 3) {
 						cout << "\n ... \t \t ...\n ";
 						qe.display();
 						cout << "\n ... \t \t ...\n ";
 
 					}
-
-
-					
 				}
-
 			}
 			// i will remake this method ..
 			else if (p == CircularQqeue) {
 				circular_Queue C;
 				
-				bool loop = true;
-				while (loop) {
+				bool Close = false;
+				while (!Close) {
 					cout << "\n Choose one of the following . \n" <<
-						" 1. EnQeue \n 2. DeQeue \n 3. Display Qeue \n 0. back \n 00. Home : ";
-					int choose;
-					cin >> choose;
-					if (choose == 1) {
-						bool add = true;
-						while (add) {
+						" 1. EnQeue \n 2. DeQeue \n 3. Display Qeue \n 9. Home : \n";
+					int input;
+					cin >> input;
+					if (input == 1) {
+						bool loop = true;
+						while (loop) {
 							if (C.isFull()) {
 								cout << " \n Error .. No space \n";
 							}
@@ -755,50 +728,24 @@ int main() {
 							int enQeue;
 							cin >> enQeue;
 							C.enQueue(enQeue);
-							cout << "\n Do you want to add another number  \n 1. YES \n 2. NO \n 0. back \n 00. Home :  \n";
-							int Yes;
-							cin >> Yes;
-							if (Yes == 1)continue;
-							else if (Yes == 0) {
-								
-								Back = true;
-								add = false;
-							}
-							else if (Yes == 2) {
-
-								add = false;
-							}
-							else if (Yes == 00) {
-								Exit = true;
-								loop = false;
-								add = false;
-							}
+							cout << "\n Do you want to add another number  \n 1. YES \n 2. NO \n 9. Home :  \n";
+							loopornot(loop, Close, Exit);
 						}
 					}
-					else if (choose == 2) {
+					else if (input == 2) {
 						if (!C.isFull()) {
 							cout << "\n Error .. There are no elements  \n";
 						}
 						else {
-							int deQeueNo;
-							cin >> deQeueNo;
+							bool loop = true;
+							while (loop) {
 							cout << " Number [ " << C.deQueue() << " ] has been deleted \n" <<
-								" Do you want to delete another number ? \n 1. YES \n 2. NO \n 0. back \n 00. Home : ";
-							int Yes;
-							cin >> Yes;
-							if (Yes == 0) {
-								
-								Back = true;
-								loop = false;
-							}
-							else if (Yes == 2) loop = false;
-							else if (Yes == 00) {
-								loop = false;
-								Exit = true;
+								" Do you want to delete another number ? \n 1. YES \n 2. NO \n 9. Home : \n";							
+							loopornot(loop, Close, Exit);
 							}
 						}
 					}
-					else if (choose == 3) {
+					else if (input == 3) {
 						if (C.isEmpty()) {
 							cout << " \n Eroor .. there are no elements \n";
 						}
@@ -1107,6 +1054,9 @@ int main() {
 			}
 
 		}
+	}
+	else {
+		cout << "\nUnknown input\n";
 	}
 
 	return 0;
