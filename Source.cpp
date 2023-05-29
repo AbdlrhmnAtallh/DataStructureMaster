@@ -554,15 +554,21 @@ int main() {
 		cout << "\n\n------------------------------------\n" << "Balaned or not : \n";
 
 		Balanced_parentheses balance;
+		cout << "Example 1: [] = ";
 		balance.print("[]");
+		cout << "\nExample 2: )(()()())(((";
 		balance.print(")(()()())(((");
 
 		//---------------------ToPostfix----------------------//
 		cout << "\n\n------------------------------------------\n" << "To Postfix : \n";
 		To_Postfix tps;
+		cout << "Example 1: 8 + 2 * 5 - (5 + 3) = ";
 		tps.infixExpression("8+2*5-(5+3)");
+		cout << "\n Example 2: a+(c*d)/x-c = ";
 		tps.infixExpression("a+(c*d)/x-c");
+		cout << "\n Example 3: 1+23*y%4(a+12*34) = ";
 		tps.infixExpression("1+23*y%4(a+12*34)");
+
 		//---------------------------------------------------//
 	}
 	else if (options == 1) {
@@ -691,7 +697,7 @@ int main() {
 						while (loop) {
 							cout << " \n  ..";
 							qe.deqeue();
-							// i need to control if qeue is empty..
+							
 							cout << " \n" <<
 								" Do you want to delete another number ? \n 1. YES \n 2. NO \n 9. Home : \n";
 							loopornot(loop, Close, Exit);
@@ -707,7 +713,7 @@ int main() {
 					}
 				}
 			}
-			// i will remake this method ..
+			
 			else if (p == CircularQqeue) {
 				circular_Queue C;
 				
@@ -758,149 +764,71 @@ int main() {
 			}
 			else if (p == Linked_list) {
 				Linkedlist Lin;
-				bool loop = true;
-				while (loop) {
+				bool Close = false;
+				while (Close) {
 					cout << "\n Choose one of the following . \n" <<
 						" 1. Isert node \n 2. Inser at beginnig \n 3. Delet node " <<
-						"\n 4. Delete at beginning \n 5. Display \n 6. Delete at end  \n  0. back \n 00. Home : ";
-					int choose;
-					cin >> choose;
-					if (choose == 00 || choose == 0)loop = false;
-					if (choose == 1) {
-						bool add = true;
-						while (add) {
+						"\n 4. Delete at beginning \n 5. Display \n 6. Delete at end  \n  0. Home : \n";
+					int input;
+					cin >> input;
+					if (input == 9)Close = false;
+					if (input == 1) {
+						bool loop = true;
+						while (loop) {
 							cout << "\n Enter the number you want to add \n ";
 							int Number;
 							cin >> Number;
 							Lin.isertnode(Number);
-							cout << "\n Do you want to add another number  \n 1. YES \n 2. NO \n 0. back \n 00. Home :  \n";
-							int Yes;
-							cin >> Yes;
-							if (Yes == 1)continue;
-							else if (Yes == 0) {
-
-								Back = true;
-								add = false;
-							}
-							else if (Yes == 2) {
-
-								add = false;
-							}
-							else if (Yes == 00) {
-								Exit = true;
-								loop = false;
-								add = false;
-							}
+							cout << "\n Do you want to add another number  \n 1. YES \n 2. NO \n 0. Home :  \n";
+							loopornot(loop, Close, Exit);
+							
 						}
 					}
-					else if (choose == 2) {
-						bool add = true;
-						while (add) {
+					else if (input == 2) {
+						bool loop = true;
+						while (loop) {
 							cout << "\n Enter the number you want to add at beginning \n ";
 							int Number;
 							cin >> Number;
 							Lin.inser_at_beginnig(Number);
 							cout << "\n Do you want to add another number at beginning  \n 1. YES \n 2. NO \n 0. back \n 00. Home :  \n";
-							int Yes;
-							cin >> Yes;
-							if (Yes == 1)continue;
-							else if (Yes == 0) {
-
-								Back = true;
-								add = false;
-							}
-							else if (Yes == 2) {
-
-								add = false;
-							}
-							else if (Yes == 00) {
-								Exit = true;
-								loop = false;
-								add = false;
-							}
+							loopornot(loop, Close, Exit);
 						}
 
 					}
-					else if (choose == 3) {
-						bool remove = true;
-						while (remove) {
+					else if (input == 3) {
+						bool loop = true;
+						while (loop) {
 							cout << "\n Enter the number you want to remove \n";
 							int Number;
 							cin >> Number;
 							Lin.delet_node(Number);
 							cout << "\n Do you want to delete another number  \n 1. YES \n 2. NO \n 0. back \n 00. Home :  \n";
-							int Yes;
-							cin >> Yes;
-							if (Yes == 1)continue;
-							else if (Yes == 0) {
-
-								Back = true;
-								remove = false;
-							}
-							else if (Yes == 2) {
-
-								remove = false;
-							}
-							else if (Yes == 00) {
-								Exit = true;
-								loop = false;
-								remove = false;
-							}
+							
+							loopornot(loop, Close, Exit);
 
 						}
 					}
-					else if (choose == 4) {
-						bool remove = true;
-						while (remove) {
+					else if (input == 4) {
+						bool loop = true;
+						while (loop) {
 							cout << " \n [ " << Lin.head->data << " ] Deleted \n ";
 							Lin.delete_at_beginning();
 							cout << " \n do you want to delete again ? \n 1. YES \n 2. NO \n 0. back \n 00. Home :  \n ";
-							int Yes;
-							cin >> Yes;
-							if (Yes == 1)continue;
-							else if (Yes == 0) {
-
-								Back = true;
-								remove = false;
-							}
-							else if (Yes == 2) {
-
-								remove = false;
-							}
-							else if (Yes == 00) {
-								Exit = true;
-								loop = false;
-								remove = false;
-							}
+							loopornot(loop, Close, Exit);
 
 						}
 					}
-					else if (choose == 5) {
+					else if (input == 5) {
 						Lin.displayNode();
 
 					}
-					else if (choose == 6) {
-						bool remove = true;
-						while (remove) {
+					else if (input == 6) {
+						bool loop = true;
+						while (loop) {
 							Lin.delete_at_end();
-							cout << " \n do you want to delete at end again ? \n 1. YES \n 2. NO \n 0. back \n 00. Home :  \n ";
-							int Yes;
-							cin >> Yes;
-							if (Yes == 1)continue;
-							else if (Yes == 0) {
-
-								Back = true;
-								remove = false;
-							}
-							else if (Yes == 2) {
-
-								remove = false;
-							}
-							else if (Yes == 00) {
-								Exit = true;
-								loop = false;
-								remove = false;
-							}
+							cout << " \n do you want to delete at end again ? \n 1. YES \n 2. NO \n 0. Home :  \n ";
+							loopornot(loop, Close, Exit);
 						}
 					}
 
@@ -909,147 +837,70 @@ int main() {
 			
 			else if (p == DoubleLinkedList) {
 				Double_linkedList dbs;
-				bool loop = true;
-				while (loop) {
+				bool Close = false;
+				while (!Close) {
 					cout << " \n  Choose one of the following . \n" <<
-						" 1. Add node \n 2. Display the previous and next item  \n 3. Display All \n 0. back \n 00. Home :";
-					int choose;
-					cin >> choose;
-					if (choose == 1) {
-						bool add= true;
-						while (add) {
+						" 1. Add node \n 2. Display the previous and next item  \n 3. Display All \n 0.Home :\n";
+					int input;
+					cin >> input;
+					if (input == 1) {
+						bool loop = true;
+						while (loop) {
 							cout << "\n Enter the nuber you want to add \n : ";
 							int number;
 							cin >> number;
 							dbs.addNode(number);
 
-							cout << " \n do you want to add again ? \n 1. YES \n 2. NO \n 0. back \n 00. Home :  \n ";
-							int Yes;
-							cin >> Yes;
-							if (Yes == 1)continue;
-							else if (Yes == 0) {
-
-								Back = true;
-
-							}
-							else if (Yes == 2) {
-								add = false;
-								//loop = false;
-							}
-							else if (Yes == 00) {
-								Exit = true;
-								loop = false;
-								add = false;
-
-							}
+							cout << " \n do you want to add again ? \n 1. YES \n 2. NO \n 0. Home :  \n ";
+							loopornot(loop, Close, Exit);
 						}
 
 					}
-					else if (choose == 2) {
-						bool display = true;
-						while (display) {
-						cout << " \n enter the number of node \n";
-						int number;
-						cin >> number;
-						dbs.Display_forwardBackward(number);
-							cout << " \n do you want to display another item ? \n 1. YES \n 2. NO \n 0. back \n 00. Home :  \n ";
-							int Yes;
-							cin >> Yes;
-							if (Yes == 1)continue;
-							else if (Yes == 0) {
-
-								Back = true;
-
-							}
-							else if (Yes == 2) {
-								display = false;
-
-							}
-							else if (Yes == 00) {
-								Exit = true;
-								loop = false;
-								display = false;
-
-							}
+					else if (input == 2) {
+						bool loop = true;
+						while (loop) {
+							cout << " \n enter the number of node \n";
+							int input;
+							cin >> input;
+							dbs.Display_forwardBackward(input);
+							cout << " \n do you want to display another item ? \n 1. YES \n 2. NO \n 0. Home :  \n ";
+							loopornot(loop, Close, Exit);
 						}
-
-					}
-					else if (choose == 3) {
-						dbs.Display();
-					}
-					
-					
-					else if (choose == 00) {
-						Exit = true;
-						loop = false;
-						
 
 					}
 				}
 			}
 			else if (p == BalancedParentheses) {
+				
 				bool loop = true;
 					Balanced_parentheses Balance;
 					cout<<	" Example 1 .. {([])} ... This is balanced \n\n " <<
 						" Example 2 .. }{(}[))][}{)((] ... This is not balanced \n ";
 				while (loop) {
 					cout << " \n Enter parentheses :\n ";
-					string x;
-					cin >> x;
-					Balance.print(x);
-					cout << " \n Do it again ? \n 1. YES \n 2. NO \n 0. back \n 00. Home :  \n ";
-					int Yes;
-					cin >> Yes;
-					if (Yes == 1)continue;
-					else if (Yes == 0) {
-
-						Back = true;
-
-					}
-					else if (Yes == 2) {
-						loop = false;
-
-					}
-					else if (Yes == 00) {
-						Exit = true;
-						loop = false;
-						
-
-					}
+					string input;
+					cin >> input;
+					Balance.print(input);
+					cout << " \n Do it again ? \n 1. YES \n 2. NO \n 0. Home :  \n ";
+					loopornot(loop, loop, Exit);
+					
 				}
 			}
 
 			else if (p == Topostfix) {
 				To_Postfix TP;
-				bool Continue = true;
-				while (Continue) {
+				bool loop = true;
+				while (loop) {
 					cout << "\n Exqmple .. \n 1. (2+2)*50/(5*22) = 22+50*522*/ \n" <<
 						" Example .. \n 2. 40/2*5(3+3)-10 = 402/533+*10- \n";
 					cout << " \n Enter an arithmeitc sentence \n";
-					string statement;
-					cin >> statement;
+					string input;
+					cin >> input;
 					cout << endl;
-					TP.infixExpression(statement);
+					TP.infixExpression(input);
 					cout << endl;
 					cout << " \n Do it again ? \n 1. YES \n 2. NO \n 0. back \n 00. Home :  \n ";
-					int Yes;
-					cin >> Yes;
-					if (Yes == 1)continue;
-					else if (Yes == 0) {
-
-						Back = true;
-						Continue = false;
-					}
-					else if (Yes == 2) {
-						Continue = false;
-
-					}
-					else if (Yes == 00) {
-						Exit = true;
-						Continue = false;
-
-
-					}
+					loopornot(loop, loop, Exit);
 				}
 			}
 
